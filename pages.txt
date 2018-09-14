@@ -1,0 +1,81 @@
+<apex:page standardController="Opportunity">
+    <apex:pageBlock title="Account Details">
+        <apex:pageBlockSection >
+            <apex:outputField value="{! Opportunity.Name }"/>
+            <apex:outputField value="{! Opportunity.Amount}"/>
+            <apex:outputField value="{! Opportunity.CloseDate}"/>
+            <apex:outputField value="{! Opportunity.Account.Name}"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+    
+    
+  
+</apex:page>
+
+====================================
+<apex:page standardController="Contact">
+
+<h1>Edit Contact</h1>
+    
+    <apex:form >
+    
+        <apex:inputField value="{! Contact.FirstName }"/>
+        <apex:inputField value="{! Contact.LastName }"/>
+        <apex:inputField value="{! Contact.Email }"/>
+        
+        <apex:commandButton action="{! save }" value="Save" />
+    
+    </apex:form>
+
+</apex:page>
+
+=========================================
+
+
+<apex:pageblock>
+        <apex:repeat var="a" value="{!Accounts}" rendered="true"  id="account_list">
+            <li>
+                <apex:outputLink value="/{!a.ID}" >
+                    <apex:outputText value="{!a.Name}"/>
+                </apex:outputLink>
+            </li>
+        </apex:repeat>
+    </apex:pageblock>
+
+==============================================
+
+<apex:page>
+
+<apex:image url="{!URLFOR($Resource.vfimagetest, 'cats/kitten1.jpg')}" />
+
+</apex:page>
+
+========================================
+
+<apex:page controller="NewCaseListController">
+     <apex:pageblock title="New Cases List" id="cases_list"> 
+        <apex:repeat var="case" value="{! newCases }" rendered="true"  id="case_list"  >
+            <li>
+                <apex:outputLink value="/{!case.ID}" >
+                    <apex:outputText value="{!case.CaseNumber}"/>
+                </apex:outputLink>
+            </li>
+        </apex:repeat>        
+    </apex:pageblock>
+</apex:page>
+
+
+public class NewCaseListController {
+    private String val = 'New';
+public List<Case> getNewCases() { 
+        List<Case> results = Database.query(
+        'SELECT Id, CaseNumber FROM Case WHERE Status = \'' + String.escapeSingleQuotes(val)+'\'');
+    return results;
+}
+}
+
+==========================================
+
+
+
