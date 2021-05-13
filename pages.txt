@@ -13,7 +13,7 @@
   
 </apex:page>
 
-=========VF PAGE===========================
+=========VF PAGE1===========================
 <apex:page standardController="Contact">
 
 <h1>Edit Contact</h1>
